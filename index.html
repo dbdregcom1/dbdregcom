@@ -7,28 +7,32 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap');
         
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Sarabun', sans-serif;
             background-color: #ffffff;
             color: #333333;
             margin: 0;
-            padding: 20px;
+            padding: 20px 10px;
             display: flex;
             justify-content: center;
         }
 
         .container {
             width: 100%;
-            max-width: 600px;
-            padding: 10px;
-            box-sizing: border-box;
+            max-width: 600px; /* ขนาดหน้ากระดาษพอดีสายตา */
+            padding: 5px;
         }
 
+        /* ส่วนหัวข้อสีม่วงตามใบจริง */
         .header {
             text-align: center;
-            color: #4A00E0; /* สีม่วงตามภาพหลัก */
+            color: #4A00E0; 
             font-weight: bold;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             line-height: 1.6;
         }
 
@@ -37,7 +41,8 @@
         }
 
         .header .sub-title {
-            font-size: 16px;
+            font-size: 15px;
+            margin-top: 4px;
         }
 
         .info-table {
@@ -46,28 +51,50 @@
         }
 
         .info-table td {
-            padding: 8px 4px;
+            padding: 9px 0;
             vertical-align: top;
-            font-size: 15px;
+            font-size: 15px; /* ขนาดตัวหนังสือมาตรฐาน อ่านง่ายทั้งคอมและมือถือ */
             line-height: 1.6;
         }
 
+        /* ฝั่งซ้าย: จัดชิดขวา และล็อกความกว้างพอดีคำ ไม่ให้ตกบรรทัด */
         .label {
             text-align: right;
-            width: 40%;
+            width: 155px; /* ปรับขนาดให้กระชับขึ้นเพื่อเหลือพื้นที่ให้ฝั่งขวาบนมือถือ */
             font-weight: bold;
-            color: #444444;
+            color: #333333;
             padding-right: 15px !important;
+            white-space: nowrap; 
         }
 
         .label::after {
             content: " :";
         }
 
+        /* ฝั่งขวา: จัดชิดซ้าย และตั้งค่าให้ตัดคำขึ้นบรรทัดใหม่เมื่อหมดพื้นที่จอ */
         .value {
             text-align: left;
-            width: 60%;
             color: #111111;
+            padding-left: 5px;
+            word-break: break-word; /* สั่งให้ตัดคำขึ้นบรรทัดใหม่อัตโนมัติเมื่อชนขอบจอมือถือ */
+            overflow-wrap: break-word;
+        }
+
+        /* ล้างค่าเอฟเฟกต์ลิงก์สีน้ำเงินขีดเส้นใต้ของมือถือ */
+        .value, .value * {
+            color: #111111 !important;
+            text-decoration: none !important;
+        }
+
+        /* ปรับแต่งเล็กน้อยเมื่ออยู่บนหน้าจอมือถือที่แคบมากๆ */
+        @media screen and (max-width: 400px) {
+            .info-table td {
+                font-size: 14.5px; /* ลดขนาดลงจืดเดียวเพื่อให้ข้อความยาวๆ แสดงผลได้สวยงาม */
+            }
+            .label {
+                width: 140px;
+                padding-right: 10px !important;
+            }
         }
     </style>
 </head>
@@ -107,7 +134,7 @@
         </tr>
         <tr>
             <td class="label">ชนิดแห่งพาณิชยกิจ</td>
-            <td class="value">ประกอบกิจการร้านกาแฟ คาเฟ่ ร้านอาหารและเครื่องดื่ม,จำหน่ายกาแฟ ชานม น้ำผลไม้ เครื่องดื่มทุกชนิด รวมถึงอาหาร ขนมหวาน เบเกอรี่ เค้ก บิงซู ไอศกรีม และของทานเล่น,ผลิต รับจ้างผลิต สั่งทำ จำหน่าย ปลีก-ส่ง อาหาร เครื่องดื่ม ขนม เบเกอรี่ และผลิตภัณฑ์ที่เกี่ยวข้อง,ให้บริการรับประทานอาหารและเครื่องดื่มภายในร้าน ซื้อกลับบ้าน จัดส่งเดลิเวอรี่ และจำหน่ายผ่านช่องทางออนไลน์</td>
+            <td class="value">ประกอบกิจการร้านกาแฟ คาเฟ่ ร้านอาหารและเครื่องดื่ม,จำหน่ายกาแฟ ชานม น้ำผลไม้ เครื่องดื่มทุกชนิด รวมถึงอาหาร ขนมหวาน เบเกอรี่ เค้ก Bingsu ไอศกรีม และของทานเล่น,ผลิต รับจ้างผลิต สั่งทำ จำหน่าย ปลีก-ส่ง อาหาร เครื่องดื่ม ขนม เบเกอรี่ และผลิตภัณฑ์ที่เกี่ยวข้อง,ให้บริการรับประทานอาหารและเครื่องดื่มภายในร้าน ซื้อกลับบ้าน จัดส่งเดลิเวอรี่ และจำหน่ายผ่านช่องทางออนไลน์</td>
         </tr>
         <tr>
             <td class="label">ที่ตั้งสำนักงานใหญ่</td>
